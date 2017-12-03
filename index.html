@@ -161,24 +161,29 @@
       
         <p>众所周知，如果不给一个元素添加固定高度，那么它就会自动适应其内容的高度。<br>怎么让宽度也具有类似行为？<br><span style="color:#f00;"><b>example:</b> 想要达到的一个效果为图片和外部盒子（box）居中于fatherBox,并且box宽度自适应于图片。</span></p>
 <p><div style="font-size:12px;border:1px solid #FFBB76;border-radius:3px;color: #DB7C22;box-shadow: 0 0 3px #ddd;background-color: #FFFCEF;padding: 6px 10px 5px;">tip：平常写代码时会遇到这样一个问题，如果div里嵌套一个img元素且div的高度是由img的高度来撑开的，那么div的高度总会比img的高度多几个px.<br>解决办法：给 img 加一个 display:block;<div></div></div></p>
-<p><b style="font-size:1.2rem;">布局效果预览：</b></p>
-<iframe src="/css-hvc/" width="100%" height="400" style="border-radius: .2em;box-shadow: 10px 10px 5px #999;border:none;"></iframe>
-
-<p><b>查看完整代码请点<a href="https://github.com/weily22/css-layout" target="_blank" rel="noopener">这里</a></b></p>
-<p>页面基本布局：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fatherBox"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box base"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./imgs/wolf.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="position-定位方案"><a href="#position-定位方案" class="headerlink" title="position 定位方案"></a>position 定位方案</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* case1 */</span></span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;<span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>:<span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* case2 需要指定宽高 */</span></span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;<span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;<span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">margin</span>:-<span class="number">100px</span> <span class="number">0</span> <span class="number">0</span> -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* case3 需要指定宽高 */</span></span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;<span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">bottom</span>: <span class="number">0</span>; <span class="attribute">right</span>: <span class="number">0</span>; </span><br><span class="line">    <span class="attribute">margin</span>:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="display-flex-方案"><a href="#display-flex-方案" class="headerlink" title="display:flex 方案"></a>display:flex 方案</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* case4 */</span></span><br><span class="line"><span class="selector-class">.fatherBox</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">margin</span>:auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* case5 */</span></span><br><span class="line"><span class="selector-class">.fatherBox</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="借助伪元素-方案"><a href="#借助伪元素-方案" class="headerlink" title="借助伪元素 方案"></a>借助伪元素 方案</h3><p>原理：利用inline-block的vertical-align:middle去对齐after伪元素，after伪元素的高度与父元素一样，从而实现了高度方向的对齐。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* case6 *</span></span><br><span class="line"><span class="comment">/* 关于vertica-align生效场景：只有一个元素属于inline或是inline-block（table-cell也可以理解为inline-block水平）水平，其身上的vertical-align属性才会起作用。一些默认情况下起作用的元素：如，图片，按钮，单复选框 */</span></span><br><span class="line"><span class="selector-class">.fatherBox</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.fatherBox</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="line-height-方案"><a href="#line-height-方案" class="headerlink" title="line-height 方案"></a>line-height 方案</h3><p>line-height如果是百分比的话，是相对于字体大小的，so想要设置居中的话，就使用px<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* case7 */</span></span><br><span class="line"><span class="selector-class">.fatherBox</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center; </span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">   <span class="attribute">display</span>: inline-block;</span><br><span class="line">   <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+        
+          <div class="article-tag tagcloud">
+            <i class="icon-price-tags icon"></i>
+            <span class="article-tag-list">
+               
+                    <span class="article-tag-list-item">
+                      <a href="javascript:void(0)" class="js-tag article-tag-list-link color1">css/layout</a>
+                    </span>
+                  
+                  </span>
+          </div>
+        
+        
+          <a class="article-more-a" style="font-size:1em;color: #458B74;" href="/2017/12/03/css中水平垂直居中笔记/#more">阅读全文 »</a>
+        
       
 
       
     </div>
     <div class="article-info article-info-index">
       
-      
+     
+      <!-- 
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,6 +194,7 @@
       		
 		</ul>
 	</div>
+ -->
 
       
 
@@ -251,7 +257,9 @@
     </div>
     <div class="article-info article-info-index">
       
-      
+     
+      <!--  -->
+
       
 
       
@@ -307,22 +315,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
+        
+        
+          <a class="article-more-a" style="font-size:1em;color: #458B74;" href="/2017/12/02/hello-world/#more">阅读全文 »</a>
+        
       
 
       
     </div>
     <div class="article-info article-info-index">
       
-      
+     
+      <!--  -->
+
       
 
       
