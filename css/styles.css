@@ -2579,4 +2579,17 @@ a.back-top:hover i {
     color: #bfbfbf
 }
 
+
+
+.content-home footer {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+}
+.content-home footer img {
+    vertical-align: middle;
+}
 /*# sourceMappingURL=styles.css.map */
